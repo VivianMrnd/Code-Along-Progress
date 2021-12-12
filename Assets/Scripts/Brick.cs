@@ -6,7 +6,7 @@ public class Brick : MonoBehaviour
 {
     public int hits = 1;
     public int points = 10;
-    //public Vector3 rotator; //para umikot ung brick
+    public Vector3 rotator; //para umikot ung brick
     public Material hitMaterial;
 
     Material _orgMaterial;
@@ -14,14 +14,15 @@ public class Brick : MonoBehaviour
 
     void Start()
     {
-        //transform.Rotate(rotator * (transform.position.x + transform.position.y)*0.1f);
+        transform.eulerAngles = rotator;
+
         _renderer = GetComponent<Renderer>();
         _orgMaterial = _renderer.sharedMaterial;
     }
 
     void Update()
     {
-        //transform.Rotate(rotator * Time.deltaTime);
+        transform.Rotate(Vector3.forward, 10 * Time.deltaTime);
     }
     private void OnCollisionEnter(Collision collision)
     {
